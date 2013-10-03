@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.01_01';
+  $ZMQ::FFI::VERSION = '0.02';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
@@ -33,7 +33,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.01_01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -283,7 +283,7 @@ add C<$topic> to the subscription list
 
 =head2 unsubscribe($topic)
 
-remove $topic from the subscription list
+remove C<$topic> from the subscription list
 
 =head2 send($msg, [$flags])
 
