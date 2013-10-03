@@ -1,0 +1,31 @@
+---
+abstract: 'zeromq bindings using libffi and FFI::Raw'
+author:
+  - 'Dylan Cali <calid1984@gmail.com'
+build_requires:
+  AnyEvent: 0
+  Test::Exception: 0
+  Test::More: 0
+  Time::HiRes: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.120921'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: ZMQ-FFI
+requires:
+  Carp: 0
+  Exporter: 0
+  FFI::Raw: 0
+  Moo: 0
+  Moo::Role: 0
+  Sub::Exporter: 0
+  feature: 0
+  if: 0
+  namespace::autoclean: 0
+  strict: 0
+  warnings: 0
+version: 0.01
