@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.01'; # TRIAL
+  $ZMQ::FFI::SocketBase::VERSION = '0.01_01';
 }
 
 use Moo;
@@ -12,6 +12,8 @@ use feature 'switch';
 use Carp;
 use ZMQ::FFI::Util qw(zcheck_error zcheck_null zmq_version);
 use ZMQ::FFI::Constants qw(:all);
+
+use Try::Tiny;
 
 my $zmq_socket = FFI::Raw->new(
     'libzmq.so' => 'zmq_socket',
@@ -105,7 +107,13 @@ sub BUILD {
 
     $self->_socket( $zmq_socket->($self->ctx_ptr, $self->type) );
 
-    zcheck_null('zmq_socket', $self->_socket);
+    try {
+        zcheck_null('zmq_socket', $self->_socket);
+    }
+    catch {
+        $self->_socket(-1);
+        croak $_;
+    };
 
     # ensure clean edge state
     while ( $self->has_pollin ) {
@@ -311,6 +319,7 @@ sub close {
     my $self = shift;
 
     zcheck_error('zmq_close', $zmq_close->($self->_socket));
+    $self->_socket(-1);
 }
 
 __PACKAGE__->meta->make_immutable();
@@ -325,7 +334,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 AUTHOR
 

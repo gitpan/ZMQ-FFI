@@ -16,6 +16,7 @@ lib/ZMQ/FFI/ZMQ2/Context.pm
 lib/ZMQ/FFI/ZMQ2/Socket.pm
 lib/ZMQ/FFI/ZMQ3/Context.pm
 lib/ZMQ/FFI/ZMQ3/Socket.pm
+release.sh
 t/errors.t
 t/fd.t
 t/multipart.t

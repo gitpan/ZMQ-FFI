@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketRole;
 {
-  $ZMQ::FFI::SocketRole::VERSION = '0.01'; # TRIAL
+  $ZMQ::FFI::SocketRole::VERSION = '0.01_01';
 }
 
 use Moo::Role;
@@ -18,7 +18,8 @@ has type => (
 );
 
 has _socket => (
-    is => 'rw',
+    is      => 'rw',
+    default => -1,
 );
 
 requires qw(
@@ -43,7 +44,11 @@ requires qw(
 );
 
 sub DEMOLISH {
-    shift->close();
+    my $self = shift;
+
+    unless ($self->_socket == -1) {
+        $self->close();
+    }
 }
 
 1;
@@ -58,7 +63,7 @@ ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 AUTHOR
 

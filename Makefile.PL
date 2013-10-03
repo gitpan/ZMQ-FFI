@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
     "Moo" => 0,
     "Moo::Role" => 0,
     "Sub::Exporter" => 0,
+    "Try::Tiny" => 0,
     "feature" => 0,
     "if" => 0,
     "namespace::autoclean" => 0,
@@ -34,11 +35,12 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "AnyEvent" => 0,
+    "EV" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
     "Time::HiRes" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.01_01",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ3::Context;
 {
-  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.01'; # TRIAL
+  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.01_01';
 }
 
 use Moo;
@@ -12,6 +12,8 @@ use Carp;
 use ZMQ::FFI::Util qw(zcheck_error zcheck_null zmq_version);
 use ZMQ::FFI::ZMQ3::Socket;
 use ZMQ::FFI::Constants qw(ZMQ_IO_THREADS ZMQ_MAX_SOCKETS);
+
+use Try::Tiny;
 
 with q(ZMQ::FFI::ContextRole);
 
@@ -51,6 +53,14 @@ sub BUILD {
 
     $self->_ctx( $zmq_ctx_new->() );
 
+    try {
+        zcheck_null('zmq_ctx_new', $self->_ctx);
+    }
+    catch {
+        $self->_ctx(-1);
+        croak $_;
+    };
+
     if ( $self->has_threads ) {
         $self->set(ZMQ_IO_THREADS, $self->_threads);
     }
@@ -58,8 +68,6 @@ sub BUILD {
     if ( $self->has_max_sockets ) {
         $self->set(ZMQ_MAX_SOCKETS, $self->_max_sockets);
     }
-
-    zcheck_null('zmq_ctx_new', $self->_ctx);
 }
 
 sub get {
@@ -90,6 +98,7 @@ sub destroy {
     my $self = shift;
 
     zcheck_error('zmq_ctx_destroy', $zmq_ctx_destroy->($self->_ctx));
+    $self->_ctx(-1);
 };
 
 __PACKAGE__->meta->make_immutable();
@@ -104,7 +113,7 @@ ZMQ::FFI::ZMQ3::Context
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 AUTHOR
 

@@ -1,13 +1,14 @@
 package ZMQ::FFI::ContextRole;
 {
-  $ZMQ::FFI::ContextRole::VERSION = '0.01'; # TRIAL
+  $ZMQ::FFI::ContextRole::VERSION = '0.01_01';
 }
 
 use Moo::Role;
 use ZMQ::FFI::Util qw(zmq_version);
 
 has _ctx => (
-    is => 'rw'
+    is      => 'rw',
+    default => -1,
 );
 
 has threads => (
@@ -34,7 +35,11 @@ sub version {
 }
 
 sub DEMOLISH {
-    shift->destroy();
+    my $self = shift;
+
+    unless ($self->_ctx == -1) {
+        $self->destroy();
+    }
 }
 
 1;
@@ -49,7 +54,7 @@ ZMQ::FFI::ContextRole
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 AUTHOR
 

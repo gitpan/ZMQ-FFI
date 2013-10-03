@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Context;
 {
-  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.01'; # TRIAL
+  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.01_01';
 }
 
 use Moo;
@@ -8,6 +8,7 @@ use namespace::autoclean;
 
 use FFI::Raw;
 use Carp;
+use Try::Tiny;
 
 use ZMQ::FFI::Util qw(zcheck_error zcheck_null zmq_version);
 use ZMQ::FFI::ZMQ2::Socket;
@@ -40,7 +41,14 @@ sub BUILD {
     }
 
     $self->_ctx( $zmq_init->($self->_threads) );
-    zcheck_null('zmq_init', $self->_ctx);
+
+    try {
+        zcheck_null('zmq_init', $self->_ctx);
+    }
+    catch {
+        $self->_ctx(-1);
+        croak $_;
+    };
 }
 
 sub get {
@@ -76,6 +84,7 @@ sub destroy {
     my $self = shift;
 
     zcheck_error('zmq_term', $zmq_term->($self->_ctx));
+    $self->_ctx(-1);
 }
 
 __PACKAGE__->meta->make_immutable();
@@ -90,7 +99,7 @@ ZMQ::FFI::ZMQ2::Context
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 AUTHOR
 
