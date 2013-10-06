@@ -9,14 +9,18 @@ dist.ini
 lib/ZMQ/FFI.pm
 lib/ZMQ/FFI/Constants.pm
 lib/ZMQ/FFI/ContextRole.pm
+lib/ZMQ/FFI/ErrorHandler.pm
+lib/ZMQ/FFI/SoWrapper.pm
 lib/ZMQ/FFI/SocketBase.pm
 lib/ZMQ/FFI/SocketRole.pm
 lib/ZMQ/FFI/Util.pm
+lib/ZMQ/FFI/Versioner.pm
 lib/ZMQ/FFI/ZMQ2/Context.pm
 lib/ZMQ/FFI/ZMQ2/Socket.pm
 lib/ZMQ/FFI/ZMQ3/Context.pm
 lib/ZMQ/FFI/ZMQ3/Socket.pm
 release.sh
+scripts/gen_zmq_constants.pl
 t/errors.t
 t/fd.t
 t/multipart.t
@@ -24,5 +28,5 @@ t/options.t
 t/pubsub.t
 t/send_recv.t
 weaver.ini
-xt/gen_zmq_constants.pl
+xt/sonames.pl
 xt/test_versions.sh

@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution ZMQ-FFI,
-version 0.03:
+version 0.04:
 
   zeromq bindings using libffi and FFI::Raw
 

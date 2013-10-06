@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Context;
 {
-  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.03';
+  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.04';
 }
 
 use Moo;
@@ -10,25 +10,18 @@ use FFI::Raw;
 use Carp;
 use Try::Tiny;
 
-use ZMQ::FFI::Util qw(zcheck_error zcheck_null zmq_version);
 use ZMQ::FFI::ZMQ2::Socket;
 
-with q(ZMQ::FFI::ContextRole);
+with qw(ZMQ::FFI::ContextRole);
 
 has '+threads' => (
     default => 1,
 );
 
-my $zmq_init = FFI::Raw->new(
-    'libzmq.so' => 'zmq_init',
-    FFI::Raw::ptr, # returns ctx ptr
-    FFI::Raw::int  # num threads
-);
-
-my $zmq_term = FFI::Raw->new(
-    'libzmq.so' => 'zmq_term',
-    FFI::Raw::int, # retval
-    FFI::Raw::ptr  # ctx pt
+has ffi => (
+    is      => 'ro',
+    lazy    => 1,
+    builder => '_init_ffi',
 );
 
 sub BUILD {
@@ -40,10 +33,9 @@ sub BUILD {
             $self->_verstr();
     }
 
-    $self->_ctx( $zmq_init->($self->_threads) );
-
     try {
-        zcheck_null('zmq_init', $self->_ctx);
+        $self->_ctx( $self->ffi->{zmq_init}->($self->_threads) );
+        $self->check_null('zmq_init', $self->_ctx);
     }
     catch {
         $self->_ctx(-1);
@@ -56,7 +48,7 @@ sub get {
 
     croak
         "getting ctx options not implemented for ZMQ2\n".
-        $self->_verstr();
+        "your version: ".$self->version;
 }
 
 sub set {
@@ -64,7 +56,7 @@ sub set {
 
     croak
         "setting ctx options not implemented for ZMQ2\n".
-        $self->_verstr();
+        "your version: ".$self->version;
 }
 
 sub socket {
@@ -72,19 +64,41 @@ sub socket {
 
     return ZMQ::FFI::ZMQ2::Socket->new(
         ctx_ptr => $self->_ctx,
+        soname  => $self->soname,
         type    => $type
     );
-}
-
-sub _verstr {
-    return "your version: ".join(".", zmq_version())
 }
 
 sub destroy {
     my $self = shift;
 
-    zcheck_error('zmq_term', $zmq_term->($self->_ctx));
+    $self->check_error(
+        'zmq_term',
+        $self->ffi->{zmq_term}->($self->_ctx)
+    );
+
     $self->_ctx(-1);
+}
+
+sub _init_ffi {
+    my $self = shift;
+
+    my $ffi    = {};
+    my $soname = $self->soname;
+
+    $ffi->{zmq_init} = FFI::Raw->new(
+        $soname => 'zmq_init',
+        FFI::Raw::ptr, # returns ctx ptr
+        FFI::Raw::int  # num threads
+    );
+
+    $ffi->{zmq_term} = FFI::Raw->new(
+        $soname => 'zmq_term',
+        FFI::Raw::int, # retval
+        FFI::Raw::ptr  # ctx pt
+    );
+
+    return $ffi;
 }
 
 __PACKAGE__->meta->make_immutable();
@@ -99,7 +113,7 @@ ZMQ::FFI::ZMQ2::Context
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 AUTHOR
 

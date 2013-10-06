@@ -1,6 +1,6 @@
 package ZMQ::FFI::Constants;
 {
-  $ZMQ::FFI::Constants::VERSION = '0.03';
+  $ZMQ::FFI::Constants::VERSION = '0.04';
 }
 
 # ABSTRACT: Generated module of zmq constants. All constants, all versions.
@@ -190,7 +190,7 @@ ZMQ::FFI::Constants - Generated module of zmq constants. All constants, all vers
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -205,9 +205,6 @@ version 0.03
 This module includes every zmq constant from every stable version of zeromq.
 Currently that is v2.1.0-v3.2.4.  It was generated using the zeromq2-x and
 zeromq3-x git repos at L<https://github.com/zeromq>.
-
-There is the possibility it may eventually be merged with L<ZMQ::Constants> and
-go away.
 
 =head1 SEE ALSO
 
