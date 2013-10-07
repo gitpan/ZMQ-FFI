@@ -21,7 +21,7 @@ requires:
   Carp: 0
   Exporter: 0
   FFI::Raw: 0
-  Moo: 0
+  Moo: 1.003001
   Moo::Role: 0
   Sub::Exporter: 0
   Try::Tiny: 0
@@ -32,4 +32,4 @@ requires:
   warnings: 0
 resources:
   bugtracker: https://github.com/calid/zmq-ffi/issues
-version: 0.04
+version: 0.05

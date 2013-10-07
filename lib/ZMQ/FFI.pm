@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.04';
+  $ZMQ::FFI::VERSION = '0.05';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
@@ -44,7 +44,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -217,7 +217,7 @@ or compilation.
 
 =head1 CONTEXT API
 
-=head2 new([threads, max_sockets])
+=head2 new([threads, max_sockets, soname])
 
     ZMQ::FFI->new( threads => 42, max_sockets => 42 )
 

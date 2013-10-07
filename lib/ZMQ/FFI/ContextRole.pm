@@ -1,6 +1,6 @@
 package ZMQ::FFI::ContextRole;
 {
-  $ZMQ::FFI::ContextRole::VERSION = '0.04';
+  $ZMQ::FFI::ContextRole::VERSION = '0.05';
 }
 
 use Moo::Role;
@@ -53,7 +53,7 @@ ZMQ::FFI::ContextRole
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 AUTHOR
 

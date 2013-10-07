@@ -23,7 +23,7 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "Exporter" => 0,
     "FFI::Raw" => 0,
-    "Moo" => 0,
+    "Moo" => "1.003001",
     "Moo::Role" => 0,
     "Sub::Exporter" => 0,
     "Try::Tiny" => 0,
@@ -40,7 +40,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "Time::HiRes" => 0
   },
-  "VERSION" => "0.04",
+  "VERSION" => "0.05",
   "test" => {
     "TESTS" => "t/*.t"
   }
