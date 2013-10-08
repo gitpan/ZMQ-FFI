@@ -23,6 +23,7 @@ release.sh
 scripts/gen_zmq_constants.pl
 t/errors.t
 t/fd.t
+t/gc.t
 t/multipart.t
 t/options.t
 t/pubsub.t

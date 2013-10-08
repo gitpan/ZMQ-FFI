@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketRole;
 {
-  $ZMQ::FFI::SocketRole::VERSION = '0.05';
+  $ZMQ::FFI::SocketRole::VERSION = '0.06';
 }
 
 use Moo::Role;
@@ -9,9 +9,15 @@ use FFI::Raw;
 
 with q(ZMQ::FFI::SoWrapper);
 
-has ctx_ptr => (
+has ctx => (
     is       => 'ro',
     required => 1,
+);
+
+has _ctx => (
+    is      => 'ro',
+    lazy    => 1,
+    default => sub { shift->ctx->_ctx },
 );
 
 has type => (
@@ -65,7 +71,7 @@ ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 AUTHOR
 

@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ3::Context;
 {
-  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.05';
+  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.06';
 }
 
 use Moo;
@@ -69,7 +69,7 @@ sub socket {
     my ($self, $type) = @_;
 
     return ZMQ::FFI::ZMQ3::Socket->new(
-        ctx_ptr => $self->_ctx,
+        ctx     => $self,
         soname  => $self->soname,
         type    => $type
     );
@@ -134,7 +134,7 @@ ZMQ::FFI::ZMQ3::Context
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 AUTHOR
 

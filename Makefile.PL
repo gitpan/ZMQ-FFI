@@ -36,11 +36,12 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "AnyEvent" => 0,
     "EV" => 0,
+    "Scalar::Util" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
     "Time::HiRes" => 0
   },
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => "t/*.t"
   }

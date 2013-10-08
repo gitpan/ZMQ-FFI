@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.05';
+  $ZMQ::FFI::SocketBase::VERSION = '0.06';
 }
 
 use Moo;
@@ -25,7 +25,7 @@ has ffi => (
 sub BUILD {
     my $self = shift;
 
-    $self->_socket( $self->ffi->{zmq_socket}->($self->ctx_ptr, $self->type) );
+    $self->_socket( $self->ffi->{zmq_socket}->($self->_ctx, $self->type) );
 
     try {
         $self->check_null('zmq_socket', $self->_socket);
@@ -368,7 +368,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 AUTHOR
 

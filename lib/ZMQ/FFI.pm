@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.05';
+  $ZMQ::FFI::VERSION = '0.06';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
@@ -44,7 +44,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -277,7 +277,7 @@ returns a socket of the specified type. See L<SOCKET API> below
 =head2 destroy()
 
 destroys the underlying zmq context. This is called automatically when the
-object goes out of scope
+object gets reaped
 
 =head1 SOCKET API
 
@@ -366,7 +366,7 @@ associated with the option value in the zeromq API (C<zmq_setsockopt> man page)
 =head2 close()
 
 close the underlying zmq socket. This is called automatically when the object
-goes out of scope
+gets reaped
 
 =head1 ERROR HANDLING
 

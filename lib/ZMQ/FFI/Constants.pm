@@ -1,6 +1,6 @@
 package ZMQ::FFI::Constants;
 {
-  $ZMQ::FFI::Constants::VERSION = '0.05';
+  $ZMQ::FFI::Constants::VERSION = '0.06';
 }
 
 # ABSTRACT: Generated module of zmq constants. All constants, all versions.
@@ -190,7 +190,7 @@ ZMQ::FFI::Constants - Generated module of zmq constants. All constants, all vers
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
