@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ3::Context;
 {
-  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.06';
+  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.07';
 }
 
 use Moo;
@@ -134,11 +134,11 @@ ZMQ::FFI::ZMQ3::Context
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 AUTHOR
 
-Dylan Cali <calid1984@gmail.com
+Dylan Cali <calid1984@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
