@@ -28,6 +28,7 @@ my %WriteMakefileArgs = (
     "Moo::Role" => 0,
     "Sub::Exporter" => 0,
     "Try::Tiny" => 0,
+    "bytes" => 0,
     "feature" => 0,
     "if" => 0,
     "namespace::autoclean" => 0,
@@ -37,13 +38,15 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "AnyEvent" => 0,
     "EV" => 0,
+    "List::Util" => 0,
     "Math::BigInt" => 0,
     "Scalar::Util" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
-    "Time::HiRes" => 0
+    "Time::HiRes" => 0,
+    "utf8" => 0
   },
-  "VERSION" => "0.07",
+  "VERSION" => "0.08",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -56,6 +59,7 @@ my %FallbackPrereqs = (
   "EV" => 0,
   "Exporter" => 0,
   "FFI::Raw" => 0,
+  "List::Util" => 0,
   "Math::BigInt" => 0,
   "Math::Int64" => 0,
   "Moo" => "1.003001",
@@ -66,10 +70,12 @@ my %FallbackPrereqs = (
   "Test::More" => 0,
   "Time::HiRes" => 0,
   "Try::Tiny" => 0,
+  "bytes" => 0,
   "feature" => 0,
   "if" => 0,
   "namespace::autoclean" => 0,
   "strict" => 0,
+  "utf8" => 0,
   "warnings" => 0
 );
 

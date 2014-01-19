@@ -1,6 +1,8 @@
 COPYING
+Changes
 LICENSE
 MANIFEST
+META.json
 META.yml
 Makefile.PL
 README
@@ -27,7 +29,9 @@ t/gc.t
 t/multipart.t
 t/options.t
 t/pubsub.t
+t/router-req.t
 t/send_recv.t
+t/unicode.t
 weaver.ini
 xt/sonames.pl
 xt/test_versions.sh

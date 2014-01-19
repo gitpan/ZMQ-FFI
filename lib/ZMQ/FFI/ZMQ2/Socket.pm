@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Socket;
 {
-  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.07';
+  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.08';
 }
 
 use Moo;
@@ -26,7 +26,14 @@ sub send {
 
     $flags //= 0;
 
-    my $bytes_size = length($msg);
+
+    my $length;
+    {
+        use bytes;
+        $length = length($msg);
+    };
+
+    my $bytes_size = $length;
     my $bytes      = pack "a$bytes_size", $msg;
     my $bytes_ptr  = unpack('L!', pack('P', $bytes));
 
@@ -73,12 +80,23 @@ sub recv {
     my $msg_size = $ffi->{zmq_msg_size}->($msg_ptr);
     $self->check_error('zmq_msg_size', $msg_size);
 
-    my $content_ptr = FFI::Raw::memptr($msg_size);
+    my $rv;
+    if ($msg_size) {
+        my $content_ptr = FFI::Raw::memptr($msg_size);
 
-    $self->ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
+        $self->ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
+
+
+        $ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
+        $rv = $content_ptr->tostr($msg_size);
+    }
+    else {
+        $rv = '';
+    }
 
     $ffi->{zmq_msg_close}->($msg_ptr);
-    return $content_ptr->tostr($msg_size);
+
+    return $rv;
 }
 
 sub _init_zmq2_ffi {
@@ -118,7 +136,7 @@ ZMQ::FFI::ZMQ2::Socket
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 AUTHOR
 
@@ -126,7 +144,7 @@ Dylan Cali <calid1984@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Dylan Cali.
+This software is copyright (c) 2014 by Dylan Cali.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

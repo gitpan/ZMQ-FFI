@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Context;
 {
-  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.07';
+  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.08';
 }
 
 use Moo;
@@ -113,7 +113,7 @@ ZMQ::FFI::ZMQ2::Context
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 AUTHOR
 
@@ -121,7 +121,7 @@ Dylan Cali <calid1984@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Dylan Cali.
+This software is copyright (c) 2014 by Dylan Cali.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

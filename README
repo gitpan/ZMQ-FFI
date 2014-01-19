@@ -1,11 +1,11 @@
 
 
 This archive contains the distribution ZMQ-FFI,
-version 0.07:
+version 0.08:
 
   zeromq bindings using libffi and FFI::Raw
 
-This software is copyright (c) 2013 by Dylan Cali.
+This software is copyright (c) 2014 by Dylan Cali.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
