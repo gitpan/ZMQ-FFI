@@ -1,6 +1,6 @@
 package ZMQ::FFI::ErrorHandler;
 {
-  $ZMQ::FFI::ErrorHandler::VERSION = '0.08';
+  $ZMQ::FFI::ErrorHandler::VERSION = '0.09';
 }
 
 use Moo;
@@ -56,7 +56,7 @@ sub check_null {
 sub fatal {
     my ($self, $func) = @_;
 
-    croak "$func: ".$zmq_strerror->($zmq_errno->());
+    confess "$func: ".$zmq_strerror->($zmq_errno->());
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -71,7 +71,7 @@ ZMQ::FFI::ErrorHandler
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

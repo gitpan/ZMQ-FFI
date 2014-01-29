@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ3::Context;
 {
-  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.08';
+  $ZMQ::FFI::ZMQ3::Context::VERSION = '0.09';
 }
 
 use Moo;
@@ -35,7 +35,7 @@ sub BUILD {
     }
     catch {
         $self->_ctx(-1);
-        croak $_;
+        die $_;
     };
 
     if ( $self->has_threads ) {
@@ -134,7 +134,7 @@ ZMQ::FFI::ZMQ3::Context
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

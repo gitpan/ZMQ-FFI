@@ -1,6 +1,6 @@
 package ZMQ::FFI::SoWrapper;
 {
-  $ZMQ::FFI::SoWrapper::VERSION = '0.08';
+  $ZMQ::FFI::SoWrapper::VERSION = '0.09';
 }
 
 use Moo::Role;
@@ -47,7 +47,7 @@ ZMQ::FFI::SoWrapper
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

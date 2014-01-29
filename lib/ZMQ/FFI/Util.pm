@@ -1,6 +1,6 @@
 package ZMQ::FFI::Util;
 {
-  $ZMQ::FFI::Util::VERSION = '0.08';
+  $ZMQ::FFI::Util::VERSION = '0.09';
 }
 
 # ABSTRACT: zmq convenience functions
@@ -67,13 +67,13 @@ sub zmq_version {
         FFI::Raw::ptr   # patch
     );
 
-    my ($major, $minor, $patch) = map { pack 'L!', $_ } (0, 0, 0);
+    my ($major, $minor, $patch) = map { pack 'i!', $_ } (0, 0, 0);
 
     my @ptrs = map { unpack('L!', pack('P', $_)) } ($major, $minor, $patch);
 
     $zmq_version->(@ptrs);
 
-    return map { unpack 'L!', $_ } ($major, $minor, $patch);
+    return map { unpack 'i!', $_ } ($major, $minor, $patch);
 }
 
 1;
@@ -88,7 +88,7 @@ ZMQ::FFI::Util - zmq convenience functions
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 

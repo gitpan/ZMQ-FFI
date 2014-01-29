@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Context;
 {
-  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.08';
+  $ZMQ::FFI::ZMQ2::Context::VERSION = '0.09';
 }
 
 use Moo;
@@ -28,9 +28,8 @@ sub BUILD {
     my $self = shift;
 
     if ($self->has_max_sockets) {
-        croak
-            "max_sockets option not available for ZMQ2\n".
-            $self->_verstr();
+        die "max_sockets option not available for ZMQ2\n".
+            $self->_verstr;
     }
 
     try {
@@ -39,7 +38,7 @@ sub BUILD {
     }
     catch {
         $self->_ctx(-1);
-        croak $_;
+        die $_;
     };
 }
 
@@ -48,7 +47,7 @@ sub get {
 
     croak
         "getting ctx options not implemented for ZMQ2\n".
-        "your version: ".$self->version;
+        $self->_verstr;
 }
 
 sub set {
@@ -56,7 +55,7 @@ sub set {
 
     croak
         "setting ctx options not implemented for ZMQ2\n".
-        "your version: ".$self->version;
+        $self->_verstr;
 }
 
 sub socket {
@@ -101,6 +100,11 @@ sub _init_ffi {
     return $ffi;
 }
 
+sub _verstr {
+    my $self = shift;
+    return "your version: ".join('.', $self->version);
+}
+
 __PACKAGE__->meta->make_immutable();
 
 __END__
@@ -113,7 +117,7 @@ ZMQ::FFI::ZMQ2::Context
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

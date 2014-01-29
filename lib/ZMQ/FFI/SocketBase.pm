@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.08';
+  $ZMQ::FFI::SocketBase::VERSION = '0.09';
 }
 
 use Moo;
@@ -36,7 +36,7 @@ sub BUILD {
     }
     catch {
         $self->_socket(-1);
-        croak $_;
+        die $_;
     };
 
     # ensure clean edge state
@@ -268,7 +268,7 @@ sub _pack_type {
         when (/^int$/)      { return 'i!' }
         when (/^binary$/)   { return 'L!' }
 
-        default { croak "unsupported type '$self->ffi->{zmqtype}'" }
+        default { confess "unsupported type '$self->ffi->{zmqtype}'" }
     }
 }
 
@@ -397,7 +397,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

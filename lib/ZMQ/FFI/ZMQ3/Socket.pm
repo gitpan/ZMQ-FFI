@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ3::Socket;
 {
-  $ZMQ::FFI::ZMQ3::Socket::VERSION = '0.08';
+  $ZMQ::FFI::ZMQ3::Socket::VERSION = '0.09';
 }
 
 use Moo;
@@ -111,7 +111,7 @@ ZMQ::FFI::ZMQ3::Socket
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 AUTHOR
 

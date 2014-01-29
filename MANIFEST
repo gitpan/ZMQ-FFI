@@ -22,7 +22,6 @@ lib/ZMQ/FFI/ZMQ2/Socket.pm
 lib/ZMQ/FFI/ZMQ3/Context.pm
 lib/ZMQ/FFI/ZMQ3/Socket.pm
 release.sh
-scripts/gen_zmq_constants.pl
 t/errors.t
 t/fd.t
 t/gc.t
