@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.09';
+  $ZMQ::FFI::SocketBase::VERSION = '0.10';
 }
 
 use Moo;
@@ -375,7 +375,7 @@ sub _init_ffi {
     );
 
     $ffi->{memcpy} = FFI::Raw->new(
-        'libc.so.6' => 'memcpy',
+        undef, 'memcpy',
         FFI::Raw::ptr,  # dest filled
         FFI::Raw::ptr,  # dest buf
         FFI::Raw::ptr,  # src
@@ -397,7 +397,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 AUTHOR
 

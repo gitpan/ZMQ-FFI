@@ -1,6 +1,6 @@
 package ZMQ::FFI::Util;
 {
-  $ZMQ::FFI::Util::VERSION = '0.09';
+  $ZMQ::FFI::Util::VERSION = '0.10';
 }
 
 # ABSTRACT: zmq convenience functions
@@ -88,7 +88,7 @@ ZMQ::FFI::Util - zmq convenience functions
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 SYNOPSIS
 

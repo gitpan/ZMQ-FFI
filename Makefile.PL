@@ -22,7 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "Exporter" => 0,
-    "FFI::Raw" => 0,
+    "FFI::Raw" => "0.26",
     "Math::Int64" => 0,
     "Moo" => "1.003001",
     "Moo::Role" => 0,
@@ -46,7 +46,7 @@ my %WriteMakefileArgs = (
     "Time::HiRes" => 0,
     "utf8" => 0
   },
-  "VERSION" => "0.09",
+  "VERSION" => "0.10",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -58,7 +58,7 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "EV" => 0,
   "Exporter" => 0,
-  "FFI::Raw" => 0,
+  "FFI::Raw" => "0.26",
   "List::Util" => 0,
   "Math::BigInt" => 0,
   "Math::Int64" => 0,

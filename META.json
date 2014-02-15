@@ -23,7 +23,7 @@
          "requires" : {
             "Carp" : "0",
             "Exporter" : "0",
-            "FFI::Raw" : "0",
+            "FFI::Raw" : "0.26",
             "Math::Int64" : "0",
             "Moo" : "1.003001",
             "Moo::Role" : "0",
@@ -62,6 +62,6 @@
          "web" : "https://github.com/calid/zmq-ffi"
       }
    },
-   "version" : "0.09"
+   "version" : "0.10"
 }
 
