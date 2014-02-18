@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.10';
+  $ZMQ::FFI::SocketBase::VERSION = '0.11';
 }
 
 use Moo;
@@ -11,25 +11,45 @@ use feature 'switch';
 
 use Carp;
 use FFI::Raw;
-use ZMQ::FFI::Constants qw(:all);
-
 use Try::Tiny;
+
 use Math::Int64 qw(
     int64_to_native  native_to_int64
     uint64_to_native native_to_uint64
 );
 
-has ffi => (
+use ZMQ::FFI::Constants qw(:all);
+
+with qw(
+    ZMQ::FFI::SocketRole
+    ZMQ::FFI::ErrorHandler
+    ZMQ::FFI::Versioner
+);
+
+has _ffi => (
     is => 'ro',
     init_arg => undef,
     lazy     => 1,
     builder  => '_init_ffi',
 );
 
+# real underlying zmq ctx pointer
+has _ctx => (
+    is      => 'ro',
+    lazy    => 1,
+    default => sub { shift->ctx->_ctx },
+);
+
+# real underlying zmq socket pointer
+has _socket => (
+    is      => 'rw',
+    default => -1,
+);
+
 sub BUILD {
     my $self = shift;
 
-    $self->_socket( $self->ffi->{zmq_socket}->($self->_ctx, $self->type) );
+    $self->_socket( $self->_ffi->{zmq_socket}->($self->_ctx, $self->type) );
 
     try {
         $self->check_null('zmq_socket', $self->_socket);
@@ -54,7 +74,7 @@ sub connect {
 
     $self->check_error(
         'zmq_connect',
-        $self->ffi->{zmq_connect}->($self->_socket, $endpoint)
+        $self->_ffi->{zmq_connect}->($self->_socket, $endpoint)
     );
 }
 
@@ -67,8 +87,12 @@ sub bind {
 
     $self->check_error(
         'zmq_bind',
-        $self->ffi->{zmq_bind}->($self->_socket, $endpoint)
+        $self->_ffi->{zmq_bind}->($self->_socket, $endpoint)
     );
+}
+
+sub send {
+    croak 'unimplemented in base class';
 }
 
 sub send_multipart {
@@ -86,6 +110,10 @@ sub send_multipart {
     }
 
     $self->send($parts[$#parts], $flags);
+}
+
+sub recv {
+    croak 'unimplemented in base class';
 }
 
 sub recv_multipart {
@@ -173,7 +201,7 @@ sub get {
 
     $self->check_error(
         'zmq_getsockopt',
-        $self->ffi->{zmq_getsockopt}->(
+        $self->_ffi->{zmq_getsockopt}->(
             $self->_socket,
             $opt,
             $optval_ptr,
@@ -188,7 +216,7 @@ sub get {
 sub set {
     my ($self, $opt, $opt_type, $opt_val) = @_;
 
-    my $ffi = $self->ffi;
+    my $ffi = $self->_ffi;
 
     if ($opt_type eq 'binary') {
         $self->check_error(
@@ -268,7 +296,7 @@ sub _pack_type {
         when (/^int$/)      { return 'i!' }
         when (/^binary$/)   { return 'L!' }
 
-        default { confess "unsupported type '$self->ffi->{zmqtype}'" }
+        default { confess "unsupported type '$self->_ffi->{zmqtype}'" }
     }
 }
 
@@ -277,7 +305,7 @@ sub close {
 
     $self->check_error(
         'zmq_close',
-        $self->ffi->{zmq_close}->($self->_socket)
+        $self->_ffi->{zmq_close}->($self->_socket)
     );
 
     $self->_socket(-1);
@@ -385,6 +413,14 @@ sub _init_ffi {
     return $ffi;
 }
 
+sub DEMOLISH {
+    my $self = shift;
+
+    unless ($self->_socket == -1) {
+        $self->close();
+    }
+}
+
 __PACKAGE__->meta->make_immutable();
 
 __END__
@@ -397,7 +433,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

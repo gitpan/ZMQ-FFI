@@ -1,65 +1,23 @@
 package ZMQ::FFI::ErrorHandler;
 {
-  $ZMQ::FFI::ErrorHandler::VERSION = '0.10';
+  $ZMQ::FFI::ErrorHandler::VERSION = '0.11';
 }
 
-use Moo;
-use namespace::autoclean;
+use Moo::Role;
 
-use Carp;
-use FFI::Raw;
+requires q(soname);
 
-has soname => (
+# ZMQ::FFI::ErrorHelper instance
+has error_helper => (
     is       => 'ro',
     required => 1,
+    handles => [qw(
+        check_error
+        check_null
+    )],
 );
 
-sub BUILD {
-    shift->_init_ffi();
-}
-
-my $zmq_errno;
-my $zmq_strerror;
-
-sub _init_ffi {
-    my $soname = shift->soname;
-
-    $zmq_errno = FFI::Raw->new(
-        $soname => 'zmq_errno',
-        FFI::Raw::int # returns errno
-        # void
-    );
-
-    $zmq_strerror = FFI::Raw->new(
-        $soname => 'zmq_strerror',
-        FFI::Raw::str,  # returns error str
-        FFI::Raw::int   # errno
-    );
-}
-
-sub check_error {
-    my ($self, $func, $rc) = @_;
-
-    if ( $rc == -1 ) {
-        $self->fatal($func);
-    }
-}
-
-sub check_null {
-    my ($self, $func, $obj) = @_;
-
-    unless ($obj) {
-        $self->fatal($func);
-    }
-}
-
-sub fatal {
-    my ($self, $func) = @_;
-
-    confess "$func: ".$zmq_strerror->($zmq_errno->());
-}
-
-__PACKAGE__->meta->make_immutable;
+1;
 
 __END__
 
@@ -71,7 +29,7 @@ ZMQ::FFI::ErrorHandler
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

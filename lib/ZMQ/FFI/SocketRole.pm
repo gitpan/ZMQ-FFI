@@ -1,33 +1,26 @@
 package ZMQ::FFI::SocketRole;
 {
-  $ZMQ::FFI::SocketRole::VERSION = '0.10';
+  $ZMQ::FFI::SocketRole::VERSION = '0.11';
 }
 
 use Moo::Role;
 
-use FFI::Raw;
+has soname => (
+    is       => 'ro',
+    required => 1,
+);
 
-with q(ZMQ::FFI::SoWrapper);
-
+# context to associate socket instance with.
+# reference necessary to guard against premature object destruction
 has ctx => (
     is       => 'ro',
     required => 1,
 );
 
-has _ctx => (
-    is      => 'ro',
-    lazy    => 1,
-    default => sub { shift->ctx->_ctx },
-);
-
+# zmq constant socket type, e.g. ZMQ_REQ
 has type => (
     is       => 'ro',
     required => 1,
-);
-
-has _socket => (
-    is      => 'rw',
-    default => -1,
 );
 
 requires qw(
@@ -51,14 +44,6 @@ requires qw(
     close
 );
 
-sub DEMOLISH {
-    my $self = shift;
-
-    unless ($self->_socket == -1) {
-        $self->close();
-    }
-}
-
 1;
 
 __END__
@@ -71,7 +56,7 @@ ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

@@ -1,16 +1,13 @@
 package ZMQ::FFI::Versioner;
 {
-  $ZMQ::FFI::Versioner::VERSION = '0.10';
+  $ZMQ::FFI::Versioner::VERSION = '0.11';
 }
 
-use Moo;
+use Moo::Role;
 
 use ZMQ::FFI::Util qw(zmq_version);
 
-has soname => (
-    is       => 'ro',
-    required => 1,
-);
+requires q(soname);
 
 has _version_parts => (
     is      => 'ro',
@@ -22,7 +19,7 @@ sub version {
     return @{shift->_version_parts};
 }
 
-__PACKAGE__->meta->make_immutable;
+1;
 
 __END__
 
@@ -34,7 +31,7 @@ ZMQ::FFI::Versioner
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

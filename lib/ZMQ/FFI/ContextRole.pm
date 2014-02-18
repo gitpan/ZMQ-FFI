@@ -1,28 +1,22 @@
 package ZMQ::FFI::ContextRole;
 {
-  $ZMQ::FFI::ContextRole::VERSION = '0.10';
+  $ZMQ::FFI::ContextRole::VERSION = '0.11';
 }
 
 use Moo::Role;
-use ZMQ::FFI::ErrorHandler;
-use ZMQ::FFI::Versioner;
 
-with q(ZMQ::FFI::SoWrapper);
-
-has _ctx => (
-    is      => 'rw',
-    default => -1,
+has soname => (
+    is       => 'ro',
+    required => 1,
 );
 
 has threads => (
     is        => 'ro',
-    reader    => '_threads',
     predicate => 'has_threads',
 );
 
 has max_sockets => (
     is        => 'ro',
-    reader    => '_max_sockets',
     predicate => 'has_max_sockets',
 );
 
@@ -32,14 +26,6 @@ requires qw(
     socket
     destroy
 );
-
-sub DEMOLISH {
-    my $self = shift;
-
-    unless ($self->_ctx == -1) {
-        $self->destroy();
-    }
-}
 
 1;
 
@@ -53,7 +39,7 @@ ZMQ::FFI::ContextRole
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

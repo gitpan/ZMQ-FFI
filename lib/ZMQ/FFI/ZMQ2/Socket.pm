@@ -1,6 +1,6 @@
 package ZMQ::FFI::ZMQ2::Socket;
 {
-  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.10';
+  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.11';
 }
 
 use Moo;
@@ -10,9 +10,7 @@ use FFI::Raw;
 
 extends q(ZMQ::FFI::SocketBase);
 
-with q(ZMQ::FFI::SocketRole);
-
-has zmq2_ffi => (
+has _zmq2_ffi => (
     is      => 'ro',
     lazy    => 1,
     builder => '_init_zmq2_ffi',
@@ -21,8 +19,8 @@ has zmq2_ffi => (
 sub send {
     my ($self, $msg, $flags) = @_;
 
-    my $ffi      = $self->ffi;
-    my $zmq2_ffi = $self->zmq2_ffi;
+    my $ffi      = $self->_ffi;
+    my $zmq2_ffi = $self->_zmq2_ffi;
 
     $flags //= 0;
 
@@ -45,7 +43,7 @@ sub send {
     );
 
     my $msg_data_ptr = $ffi->{zmq_msg_data}->($msg_ptr);
-    $self->ffi->{memcpy}->($msg_data_ptr, $bytes_ptr, $bytes_size);
+    $self->_ffi->{memcpy}->($msg_data_ptr, $bytes_ptr, $bytes_size);
 
     $self->check_error(
         'zmq_send',
@@ -58,8 +56,8 @@ sub send {
 sub recv {
     my ($self, $flags) = @_;
 
-    my $ffi      = $self->ffi;
-    my $zmq2_ffi = $self->zmq2_ffi;
+    my $ffi      = $self->_ffi;
+    my $zmq2_ffi = $self->_zmq2_ffi;
 
     $flags //= 0;
 
@@ -84,7 +82,7 @@ sub recv {
     if ($msg_size) {
         my $content_ptr = FFI::Raw::memptr($msg_size);
 
-        $self->ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
+        $self->_ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
 
 
         $ffi->{memcpy}->($content_ptr, $data_ptr, $msg_size);
@@ -136,7 +134,7 @@ ZMQ::FFI::ZMQ2::Socket
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

@@ -1,24 +1,24 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.10';
+  $ZMQ::FFI::VERSION = '0.11';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
 use ZMQ::FFI::Util qw(zmq_soname zmq_version);
+use ZMQ::FFI::ErrorHelper;
 use Carp;
 
 sub new {
     my $self = shift;
     my %args = @_;
 
-    $args{soname} //= zmq_soname();
+    $args{soname} //= zmq_soname( die => 1 );
 
-    unless ($args{soname}) {
-        croak
-            q(Could not load libzmq, tried: ).
-            qq(libzmq.so, libzmq.so.3, libzmq.so.1\n).
-            q(Is libzmq on your ld path?);
-    }
+    # explicitly passing in a loaded error helper instance
+    # (i.e. zmq error bindings) guards against the OS X loader clobbering errno,
+    # which can happen if the bindings are loaded lazily
+    $args{error_helper} =
+        ZMQ::FFI::ErrorHelper->new( soname => $args{soname} );
 
     my ($major) = zmq_version($args{soname});
 
@@ -44,7 +44,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 
