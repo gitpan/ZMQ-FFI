@@ -1,11 +1,12 @@
 package ZMQ::FFI::ZMQ2::Socket;
 {
-  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.12';
+  $ZMQ::FFI::ZMQ2::Socket::VERSION = '0.13';
 }
 
 use Moo;
 use namespace::autoclean;
 
+use Carp;
 use FFI::Raw;
 
 extends q(ZMQ::FFI::SocketBase);
@@ -97,6 +98,18 @@ sub recv {
     return $rv;
 }
 
+sub disconnect {
+    my ($self, $endpoint) = @_;
+
+    croak 'not available in zmq 2.x';
+}
+
+sub unbind {
+    my ($self, $endpoint) = @_;
+
+    croak 'not available in zmq 2.x';
+}
+
 sub _init_zmq2_ffi {
     my $self = shift;
 
@@ -134,7 +147,7 @@ ZMQ::FFI::ZMQ2::Socket
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 AUTHOR
 

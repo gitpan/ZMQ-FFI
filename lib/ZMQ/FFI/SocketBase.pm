@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.12';
+  $ZMQ::FFI::SocketBase::VERSION = '0.13';
 }
 
 use Moo;
@@ -78,6 +78,10 @@ sub connect {
     );
 }
 
+sub disconnect {
+    croak 'unimplemented in base class';
+}
+
 sub bind {
     my ($self, $endpoint) = @_;
 
@@ -89,6 +93,10 @@ sub bind {
         'zmq_bind',
         $self->_ffi->{zmq_bind}->($self->_socket, $endpoint)
     );
+}
+
+sub unbind {
+    croak 'unimplemented in base class';
 }
 
 sub send {
@@ -453,7 +461,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 AUTHOR
 

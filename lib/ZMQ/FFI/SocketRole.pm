@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketRole;
 {
-  $ZMQ::FFI::SocketRole::VERSION = '0.12';
+  $ZMQ::FFI::SocketRole::VERSION = '0.13';
 }
 
 use Moo::Role;
@@ -25,7 +25,9 @@ has type => (
 
 requires qw(
     connect
+    disconnect
     bind
+    unbind
     send
     send_multipart
     recv
@@ -56,7 +58,7 @@ ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 AUTHOR
 

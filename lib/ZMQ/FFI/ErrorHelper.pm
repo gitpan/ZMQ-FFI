@@ -1,6 +1,6 @@
 package ZMQ::FFI::ErrorHelper;
 {
-  $ZMQ::FFI::ErrorHelper::VERSION = '0.12';
+  $ZMQ::FFI::ErrorHelper::VERSION = '0.13';
 }
 
 use Moo;
@@ -85,7 +85,7 @@ ZMQ::FFI::ErrorHelper
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 AUTHOR
 
