@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.13';
+  $ZMQ::FFI::VERSION = '0.14';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
@@ -44,7 +44,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 
@@ -297,6 +297,12 @@ same as Context version() above
 =head2 connect($endpoint)
 
 does socket connect on the specified endpoint
+
+=head2 disconnect($endpoint)
+
+I<requires zmq E<gt>= 3.x>
+
+does socket disconnect on the specified endpoint
 
 =head2 bind($endpoint)
 
