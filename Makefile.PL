@@ -41,12 +41,13 @@ my %WriteMakefileArgs = (
     "List::Util" => 0,
     "Math::BigInt" => 0,
     "Scalar::Util" => 0,
+    "Sub::Override" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
     "Time::HiRes" => 0,
     "utf8" => 0
   },
-  "VERSION" => "0.14",
+  "VERSION" => "0.15",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -66,6 +67,7 @@ my %FallbackPrereqs = (
   "Moo::Role" => 0,
   "Scalar::Util" => 0,
   "Sub::Exporter" => 0,
+  "Sub::Override" => 0,
   "Test::Exception" => 0,
   "Test::More" => 0,
   "Time::HiRes" => 0,

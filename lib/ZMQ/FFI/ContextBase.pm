@@ -1,6 +1,6 @@
 package ZMQ::FFI::ContextBase;
 {
-  $ZMQ::FFI::ContextBase::VERSION = '0.14';
+  $ZMQ::FFI::ContextBase::VERSION = '0.15';
 }
 
 use Moo;
@@ -56,7 +56,7 @@ ZMQ::FFI::ContextBase
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 AUTHOR
 

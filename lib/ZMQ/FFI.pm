@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 {
-  $ZMQ::FFI::VERSION = '0.14';
+  $ZMQ::FFI::VERSION = '0.15';
 }
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
 
@@ -44,7 +44,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

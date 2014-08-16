@@ -44,6 +44,7 @@
             "List::Util" : "0",
             "Math::BigInt" : "0",
             "Scalar::Util" : "0",
+            "Sub::Override" : "0",
             "Test::Exception" : "0",
             "Test::More" : "0",
             "Time::HiRes" : "0",
@@ -62,6 +63,6 @@
          "web" : "https://github.com/calid/zmq-ffi"
       }
    },
-   "version" : "0.14"
+   "version" : "0.15"
 }
 

@@ -1,6 +1,6 @@
 package ZMQ::FFI::SocketBase;
 {
-  $ZMQ::FFI::SocketBase::VERSION = '0.14';
+  $ZMQ::FFI::SocketBase::VERSION = '0.15';
 }
 
 use Moo;
@@ -114,7 +114,7 @@ sub send_multipart {
     }
 
     for my $i (0..$#parts-1) {
-        $self->send($parts[$i], ZMQ_SNDMORE);
+        $self->send($parts[$i], $flags | ZMQ_SNDMORE);
     }
 
     $self->send($parts[$#parts], $flags);
@@ -461,7 +461,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 AUTHOR
 
