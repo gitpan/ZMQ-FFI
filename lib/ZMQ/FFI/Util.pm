@@ -1,8 +1,5 @@
 package ZMQ::FFI::Util;
-{
-  $ZMQ::FFI::Util::VERSION = '0.15';
-}
-
+$ZMQ::FFI::Util::VERSION = '0.16';
 # ABSTRACT: zmq convenience functions
 
 use strict;
@@ -99,13 +96,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 ZMQ::FFI::Util - zmq convenience functions
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 

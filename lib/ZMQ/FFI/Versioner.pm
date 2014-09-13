@@ -1,8 +1,5 @@
 package ZMQ::FFI::Versioner;
-{
-  $ZMQ::FFI::Versioner::VERSION = '0.15';
-}
-
+$ZMQ::FFI::Versioner::VERSION = '0.16';
 use Moo::Role;
 
 use ZMQ::FFI::Util qw(zmq_version);
@@ -25,13 +22,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 ZMQ::FFI::Versioner
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 AUTHOR
 

@@ -1,8 +1,5 @@
 package ZMQ::FFI::SocketRole;
-{
-  $ZMQ::FFI::SocketRole::VERSION = '0.15';
-}
-
+$ZMQ::FFI::SocketRole::VERSION = '0.16';
 use Moo::Role;
 
 has soname => (
@@ -52,13 +49,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 AUTHOR
 

@@ -3,41 +3,41 @@ abstract: 'zeromq bindings using libffi and FFI::Raw'
 author:
   - 'Dylan Cali <calid1984@gmail.com>'
 build_requires:
-  AnyEvent: 0
-  EV: 0
-  List::Util: 0
-  Math::BigInt: 0
-  Scalar::Util: 0
-  Sub::Override: 0
-  Test::Exception: 0
-  Test::More: 0
-  Time::HiRes: 0
-  utf8: 0
+  AnyEvent: '0'
+  EV: '0'
+  List::Util: '0'
+  Math::BigInt: '0'
+  Scalar::Util: '0'
+  Sub::Override: '0'
+  Test::Exception: '0'
+  Test::More: '0'
+  Time::HiRes: '0'
+  utf8: '0'
 configure_requires:
-  ExtUtils::MakeMaker: 6.30
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142060'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: ZMQ-FFI
 requires:
-  Carp: 0
-  Exporter: 0
-  FFI::Raw: 0.26
-  Math::Int64: 0
-  Moo: 1.003001
-  Moo::Role: 0
-  Sub::Exporter: 0
-  Try::Tiny: 0
-  bytes: 0
-  feature: 0
-  if: 0
-  namespace::autoclean: 0
-  strict: 0
-  warnings: 0
+  Carp: '0'
+  Exporter: '0'
+  FFI::Raw: '0.26'
+  Math::Int64: '0'
+  Moo: '1.003001'
+  Moo::Role: '0'
+  Sub::Exporter: '0'
+  Try::Tiny: '0'
+  bytes: '0'
+  feature: '0'
+  if: '0'
+  namespace::autoclean: '0'
+  strict: '0'
+  warnings: '0'
 resources:
   bugtracker: https://github.com/calid/zmq-ffi/issues
   repository: git://github.com/calid/zmq-ffi.git
-version: 0.15
+version: '0.16'

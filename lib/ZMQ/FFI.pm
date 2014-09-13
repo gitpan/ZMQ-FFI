@@ -1,9 +1,6 @@
 package ZMQ::FFI;
-{
-  $ZMQ::FFI::VERSION = '0.15';
-}
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
-
+$ZMQ::FFI::VERSION = '0.16';
 use ZMQ::FFI::Util qw(zmq_soname zmq_version);
 use ZMQ::FFI::ErrorHelper;
 use Carp;
@@ -38,13 +35,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 

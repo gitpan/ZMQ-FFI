@@ -1,13 +1,12 @@
 package ZMQ::FFI::ZMQ3::Socket;
-{
-  $ZMQ::FFI::ZMQ3::Socket::VERSION = '0.15';
-}
-
+$ZMQ::FFI::ZMQ3::Socket::VERSION = '0.16';
 use Moo;
 use namespace::autoclean;
 
 use Carp;
 use FFI::Raw;
+
+use ZMQ::FFI::Constants q(zmq_msg_t_size);
 
 extends q(ZMQ::FFI::SocketBase);
 
@@ -43,7 +42,7 @@ sub recv {
 
     my $ffi = $self->_ffi;
 
-    my $msg_ptr = FFI::Raw::memptr(40); # large enough to hold zmq_msg_t
+    my $msg_ptr = FFI::Raw::memptr(zmq_msg_t_size);
 
     $self->check_error(
         'zmq_msg_init',
@@ -144,13 +143,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 ZMQ::FFI::ZMQ3::Socket
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 AUTHOR
 
