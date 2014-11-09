@@ -1,5 +1,5 @@
 package ZMQ::FFI::ErrorHandler;
-$ZMQ::FFI::ErrorHandler::VERSION = '0.16';
+$ZMQ::FFI::ErrorHandler::VERSION = '0.17';
 use Moo::Role;
 
 requires q(soname);
@@ -28,7 +28,7 @@ ZMQ::FFI::ErrorHandler
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

@@ -1,5 +1,5 @@
 package ZMQ::FFI::ContextRole;
-$ZMQ::FFI::ContextRole::VERSION = '0.16';
+$ZMQ::FFI::ContextRole::VERSION = '0.17';
 use Moo::Role;
 
 has soname => (
@@ -21,6 +21,8 @@ requires qw(
     get
     set
     socket
+    proxy
+    device
     destroy
 );
 
@@ -38,7 +40,7 @@ ZMQ::FFI::ContextRole
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

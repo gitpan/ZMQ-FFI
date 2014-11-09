@@ -1,5 +1,5 @@
 package ZMQ::FFI::SocketBase;
-$ZMQ::FFI::SocketBase::VERSION = '0.16';
+$ZMQ::FFI::SocketBase::VERSION = '0.17';
 use Moo;
 use namespace::autoclean;
 
@@ -460,7 +460,7 @@ ZMQ::FFI::SocketBase
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

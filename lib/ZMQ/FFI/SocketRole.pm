@@ -1,5 +1,5 @@
 package ZMQ::FFI::SocketRole;
-$ZMQ::FFI::SocketRole::VERSION = '0.16';
+$ZMQ::FFI::SocketRole::VERSION = '0.17';
 use Moo::Role;
 
 has soname => (
@@ -57,7 +57,7 @@ ZMQ::FFI::SocketRole
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

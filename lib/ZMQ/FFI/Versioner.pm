@@ -1,5 +1,5 @@
 package ZMQ::FFI::Versioner;
-$ZMQ::FFI::Versioner::VERSION = '0.16';
+$ZMQ::FFI::Versioner::VERSION = '0.17';
 use Moo::Role;
 
 use ZMQ::FFI::Util qw(zmq_version);
@@ -30,7 +30,7 @@ ZMQ::FFI::Versioner
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

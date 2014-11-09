@@ -40,4 +40,4 @@ requires:
 resources:
   bugtracker: https://github.com/calid/zmq-ffi/issues
   repository: git://github.com/calid/zmq-ffi.git
-version: '0.16'
+version: '0.17'

@@ -1,5 +1,5 @@
 package ZMQ::FFI::ZMQ3::Context;
-$ZMQ::FFI::ZMQ3::Context::VERSION = '0.16';
+$ZMQ::FFI::ZMQ3::Context::VERSION = '0.17';
 use Moo;
 use namespace::autoclean;
 
@@ -68,6 +68,19 @@ sub socket {
     );
 }
 
+sub proxy {
+    my ($self, $front, $back, $capture) = @_;
+
+    $self->check_error(
+        'zmq_proxy',
+        $self->_ffi->{zmq_proxy}->(
+            $front->_socket,
+            $back->_socket,
+            defined $capture ? $capture->_socket : undef,
+        )
+    );
+}
+
 sub destroy {
     my $self = shift;
 
@@ -106,6 +119,22 @@ sub _init_ffi {
         FFI::Raw::int  # opt constant
     );
 
+    $ffi->{zmq_proxy} = FFI::Raw->new(
+        $soname => 'zmq_proxy',
+        FFI::Raw::int, # error code
+        FFI::Raw::ptr, # frontend
+        FFI::Raw::ptr, # backend
+        FFI::Raw::ptr, # captuer
+    );
+
+    $ffi->{zmq_device} = FFI::Raw->new(
+        $soname => 'zmq_device',
+        FFI::Raw::int, # error code
+        FFI::Raw::int, # type
+        FFI::Raw::ptr, # frontend
+        FFI::Raw::ptr, # backend
+    );
+
     $ffi->{zmq_ctx_destroy} = FFI::Raw->new(
         $soname => 'zmq_ctx_destroy',
         FFI::Raw::int, # retval
@@ -129,7 +158,7 @@ ZMQ::FFI::ZMQ3::Context
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

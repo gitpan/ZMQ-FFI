@@ -1,5 +1,5 @@
 package ZMQ::FFI::ContextBase;
-$ZMQ::FFI::ContextBase::VERSION = '0.16';
+$ZMQ::FFI::ContextBase::VERSION = '0.17';
 use Moo;
 use namespace::autoclean;
 
@@ -29,6 +29,19 @@ sub socket {
     croak 'unimplemented in base class';
 }
 
+sub proxy {
+    croak 'unimplemented in base class';
+}
+
+sub device {
+    my ($self, $type, $front, $back) = @_;
+
+    $self->check_error(
+        'zmq_device',
+        $self->_ffi->{zmq_device}->($type, $front->_socket, $back->_socket)
+    );
+}
+
 sub destroy {
     croak 'unimplemented in base class';
 }
@@ -55,7 +68,7 @@ ZMQ::FFI::ContextBase
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 AUTHOR
 

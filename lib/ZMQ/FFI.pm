@@ -1,6 +1,6 @@
 package ZMQ::FFI;
 # ABSTRACT: zeromq bindings using libffi and FFI::Raw
-$ZMQ::FFI::VERSION = '0.16';
+$ZMQ::FFI::VERSION = '0.17';
 use ZMQ::FFI::Util qw(zmq_soname zmq_version);
 use ZMQ::FFI::ErrorHelper;
 use Carp;
@@ -43,7 +43,7 @@ ZMQ::FFI - zeromq bindings using libffi and FFI::Raw
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
 
@@ -237,10 +237,10 @@ max number of sockets allowed for context. Default: 1024
 
 =item soname
 
-specify the libzmq library name to load.  By default ZMQ::FFI will try the
-linker name, C<libzmq.so>, and then the sonames C<libzmq.so.3> and
-C<libzmq.so.1>, in that order. C<soname> can also be the path to a particular
-libzmq so file
+specify the libzmq library name to load.  By default ZMQ::FFI will first try
+the generic soname for the system, then the soname for each version of zeromq
+(e.g. libzmq.so.3). C<soname> can also be the path to a particular libzmq so
+file
 
 It is technically possible to have multiple contexts of different versions in
 the same process, though the utility of doing such a thing is dubious
@@ -272,6 +272,14 @@ set a context option value
     $ctx->socket(ZMQ_REQ)
 
 returns a socket of the specified type. See L<SOCKET API> below
+
+=head2 proxy($frontend, $backend, $capture)
+
+sets up and runs a zmq_proxy, C<$capture> is optional
+
+=head2 device($type, $frontend, $backend)
+
+sets up and runs a zmq_device with specified frontend and backend sockets
 
 =head2 destroy()
 
